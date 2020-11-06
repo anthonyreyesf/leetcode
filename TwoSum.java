@@ -11,19 +11,16 @@ package leetcode;
  */
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        int[] sum = new int[2];
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = 0; j < nums.length - 1; j++) {
-                if (i != j && nums[i] + nums[j] == target) {
-                    sum[0] = i;
-                    sum[1] = j;
-                    
-                    return sum;
-                }
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[] {map.get(target - nums[i]), i};
             }
+            
+            map.put(nums[i], i);
         }
         
-        return sum;
+        return null;
     }
 }
